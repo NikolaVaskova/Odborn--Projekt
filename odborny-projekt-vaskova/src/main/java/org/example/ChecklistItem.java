@@ -1,8 +1,11 @@
 package org.example;
 
 public class ChecklistItem {
-    String name;
-    String password;
+    private Integer id;
+    private String label;
 
-    
+    public ChecklistItem(Integer id, String label) {
+        this.id = id;
+        this.label = label;
+    }
 }

@@ -12,7 +12,7 @@ public class Login extends JFrame {
     JPasswordField passwordText;
     JButton loginButton, showPasswordButton;
 
-    public Login() throws HeadlessException {
+    public Login() throws HeadlessException { //Konstruktor
         setTitle("Login");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 350);
@@ -76,6 +76,7 @@ public class Login extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setVisible(false);
                 SelectOperation newWindow = new SelectOperation();
                 newWindow.setVisible(true);
             }

@@ -76,12 +76,14 @@ public class SelectOperation extends JFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setVisible(false);
                 Checklist newWindow = new Checklist();
                 newWindow.setVisible(true);
             }
         });
 
         add(panel);
+
     }
 }
 

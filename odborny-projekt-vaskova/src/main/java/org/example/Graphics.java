@@ -1,4 +1,10 @@
 package org.example;
 
-public class Graphics {
+import javax.swing.*;
+import java.awt.*;
+
+public class Graphics extends JFrame {
+    public Graphics()throws HeadlessException{
+
+    }
 }
