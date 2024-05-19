@@ -1,7 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
-
+//Tohle je hlavni logivka trida, ktera bude pouzivana k spusteni logiky programu
 public class Company {
     private ArrayList<User> users;
     private ArrayList <Computer> computers;

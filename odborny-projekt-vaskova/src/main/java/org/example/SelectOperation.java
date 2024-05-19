@@ -24,19 +24,22 @@ public class SelectOperation extends JFrame {
 
         GridBagConstraints g = new GridBagConstraints();
 
+
         operationLabel = new JLabel("Operation:");
             g.gridx = 0;
             g.gridy = 1;
             g.gridwidth = 1;
             g.gridheight = 1;
-            panel.add(operationLabel, g);
+        panel.add(operationLabel, g);
+
 
         nameLabel =  new JLabel("Name:");
             g.gridx = 0;
             g.gridy = 0;
             g.gridwidth = 1;
             g.gridheight = 1;
-            panel.add(nameLabel, g);
+        panel.add(nameLabel, g);
+
 
         nameText = new JTextField();
             g.gridx = 1;
@@ -44,7 +47,9 @@ public class SelectOperation extends JFrame {
             g.gridwidth = 2;
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
-            panel.add(nameText, g);
+            nameText.setColumns(10);
+        panel.add(nameText, g);
+
 
         nameComboBox = new JComboBox();
             g.gridx = 3;
@@ -52,9 +57,10 @@ public class SelectOperation extends JFrame {
             g.gridwidth = 2;
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
-            panel.add(nameComboBox, g);
+        panel.add(nameComboBox, g);
         nameComboBox.addItem("User");
         nameComboBox.addItem("Device");
+
 
         operationComboBox = new JComboBox();
             g.gridx = 2;
@@ -62,17 +68,20 @@ public class SelectOperation extends JFrame {
             g.gridwidth = 3;
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
-            panel.add(operationComboBox, g);
-        operationComboBox.addItem("Checklist1");
-        operationComboBox.addItem("Checklist2");
-        operationComboBox.addItem("Checklist3");
+        panel.add(operationComboBox, g);
+        operationComboBox.addItem("PC installation");
+        operationComboBox.addItem("PC reinstallation");
+        operationComboBox.addItem("PC for sale");
+        operationComboBox.addItem("User");
+
 
         nextButton = new JButton("Next");
             g.gridx = 2;
             g.gridy = 2;
             g.gridwidth = 1;
             g.gridheight = 1;
-            panel.add(nextButton, g);
+        panel.add(nextButton, g);
+
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,8 +91,8 @@ public class SelectOperation extends JFrame {
             }
         });
 
-        add(panel);
 
+        add(panel);
     }
 }
 

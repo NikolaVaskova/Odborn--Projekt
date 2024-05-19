@@ -10,7 +10,7 @@ public class Login extends JFrame {
     JLabel nameLabel, passwordLabel;
     JTextField nameText;
     JPasswordField passwordText;
-    JButton loginButton, showPasswordButton;
+    JButton loginButton, showPasswordButton, registerButton;
 
     public Login() throws HeadlessException { //Konstruktor
         setTitle("Login");
@@ -32,7 +32,7 @@ public class Login extends JFrame {
             g.gridy = 0;
             g.gridwidth = 1;
             g.gridheight = 1;
-            panel.add(nameLabel, g);
+        panel.add(nameLabel, g);
 
 
         passwordLabel = new JLabel("Password:");
@@ -40,39 +40,42 @@ public class Login extends JFrame {
             g.gridy = 1;
             g.gridwidth = 1;
             g.gridheight = 1;
-            panel.add(passwordLabel, g);
+        panel.add(passwordLabel, g);
 
 
         nameText = new JTextField();
             g.gridx = 1;
             g.gridy = 0;
-            g.gridwidth = 1;
+            g.gridwidth = 2;
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
-            panel.add(nameText, g);
-        // ZMNĚNIT barvu pozadi na firemni barvy
-        nameText.setBackground(Color.getHSBColor(192,237,251));
+            nameText.setColumns(20);
+            // ZMNĚNIT barvu pozadi na firemni barvy
+            nameText.setBackground(Color.getHSBColor(192,237,251));
+        panel.add(nameText, g);
 
 
         passwordText = new JPasswordField();
             g.gridx = 1;
             g.gridy = 1;
-            g.gridwidth = 1;
+            g.gridwidth = 2;
             g.gridheight = 1;
+            nameText.setColumns(20);
             g.fill = GridBagConstraints.HORIZONTAL;
-            panel.add(passwordText, g);
-        // ZMNĚNIT barvu pozadi na firemni barvy
-        passwordText.setBackground(Color.getHSBColor(192,237,251));
+            // ZMNĚNIT barvu pozadi na firemni barvy
+            passwordText.setBackground(Color.getHSBColor(192,237,251));
+        panel.add(passwordText, g);
 
 
         loginButton = new JButton("Login");
-            g.gridx = 0;
+            g.gridx = 1;
             g.gridy = 2;
-            g.gridwidth = 1;
+            g.gridwidth = 2;
             g.gridheight = 1;
-            panel.add(loginButton, g);
-        // ZMNĚNIT barvu pozadi na firemni barvy
-        loginButton.setBackground(Color.getHSBColor(192,237,251));
+            // ZMNĚNIT barvu pozadi na firemni barvy
+            loginButton.setBackground(Color.getHSBColor(192,237,251));
+        panel.add(loginButton, g);
+
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,14 +86,15 @@ public class Login extends JFrame {
         });
 
 
-        showPasswordButton = new JButton("Show password");
-            g.gridx = 1;
-            g.gridy = 2;
+        showPasswordButton = new JButton("Show");
+            g.gridx = 3;
+            g.gridy = 1;
             g.gridwidth = 1;
             g.gridheight = 1;
-            panel.add(showPasswordButton, g);
         // ZMNĚNIT barvu pozadi na firemni barvy
         showPasswordButton.setBackground(Color.getHSBColor(192,237,251));
+        panel.add(showPasswordButton, g);
+
         //Ukazuje a skryva heslo
         showPasswordButton.addActionListener(new ActionListener() {
             @Override
@@ -104,6 +108,23 @@ public class Login extends JFrame {
                 }
             }
         });
+
+
+        registerButton = new JButton("Register Here!");
+            g.gridx = 3;
+            g.gridy = 2;
+            g.gridwidth = 1;
+            g.gridheight = 1;
+        panel.add(registerButton, g);
+
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Register newWindow = new Register();
+                newWindow.setVisible(true);
+            }
+        });
+
         add(panel);
     }
 }

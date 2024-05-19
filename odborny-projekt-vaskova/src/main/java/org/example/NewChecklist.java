@@ -1,18 +1,27 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class NewChecklist {
-    private HashMap<ChecklistItem, Boolean> checklistItems;
+    //private HashMap<ChecklistItem, Boolean> checklistItems;
+
+    /*public NewChecklist() {
+        checklistItems = new HashMap<>();
+    }*/
+
+    private List<ChecklistItem> items;
 
     public NewChecklist() {
-        checklistItems = new HashMap<>();
+        this.items = new ArrayList<>();
     }
 
-    public void addItem (ChecklistItem item){
-        checklistItems.put(item, false);
+    public void addItem(ChecklistItem item) {
+        this.items.add(item);
     }
-    public void passItem (ChecklistItem item){
-        checklistItems.put(item, true);
+
+    public List<ChecklistItem> getItems() {
+        return items;
     }
 }

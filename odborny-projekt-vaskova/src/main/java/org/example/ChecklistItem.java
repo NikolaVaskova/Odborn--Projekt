@@ -8,4 +8,7 @@ public class ChecklistItem {
         this.id = id;
         this.label = label;
     }
+    public String getLabel() {
+        return label;
+    }
 }
