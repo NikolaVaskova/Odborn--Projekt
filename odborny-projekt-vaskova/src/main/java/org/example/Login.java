@@ -13,13 +13,7 @@ public class Login extends JFrame {
     JButton loginButton, showPasswordButton, registerButton;
 
     public Login() throws HeadlessException { //Konstruktor
-        setTitle("Login");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 350);
-        //setIconImage
-        //setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
+
 
 
         panel = new JPanel();
@@ -126,6 +120,14 @@ public class Login extends JFrame {
         });
 
         add(panel);
+
+        setTitle("Login");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(500, 350);
+        //setIconImage
+        //setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 }
 
