@@ -86,11 +86,11 @@ public class SelectOperation extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                Checklist newWindow = new Checklist();
+                DBConnect dbConnect = null;
+                Checklist newWindow = new Checklist(dbConnect);
                 newWindow.setVisible(true);
             }
         });
-
 
         add(panel);
     }

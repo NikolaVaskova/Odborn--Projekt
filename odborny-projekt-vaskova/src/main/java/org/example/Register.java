@@ -2,6 +2,8 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Register extends JFrame {
     JPanel panel;
@@ -94,12 +96,28 @@ public class Register extends JFrame {
             // ZMNĚNIT barvu pozadi na firemni barvy
             registerButton.setBackground(Color.getHSBColor(192,237,251));
         panel.add(registerButton, g);
-        //Doplnit ActionListener, ktery zavre okno,
-        //do databaze zada noveho cloveka POKUD jeho email obsahuje "@savencia.com" a zadané jmeno sedi se jmenem v zadanem emailu
-        //jinak vypise chybu
 
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = nameText.getText();
+                String email = emailText.getText();
 
-
+                if (email.indexOf("@savencia.com") != -1) {
+                    DBConnect dbConnect = new DBConnect();
+                    //dbConnect.addUser(name, email, new String(passwordText.getPassword()));
+                    dbConnect.addUser(name, email, passwordHash(passwordText.getPassword()));
+                    setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid email");
+                }
+            }
+        });
         add(panel);
     }
+    private void passwordHash(String password) {
+        return password;
+    }
 }
+
+

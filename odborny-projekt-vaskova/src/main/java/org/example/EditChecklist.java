@@ -12,7 +12,6 @@ public class EditChecklist extends JFrame {
     JButton saveButton;
     public EditChecklist() throws HeadlessException {
 
-
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
@@ -65,7 +64,6 @@ public class EditChecklist extends JFrame {
                 setVisible(false);
             }
         });
-
         add(panel);
 
         setTitle("Edit");
