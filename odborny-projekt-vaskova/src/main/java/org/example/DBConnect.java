@@ -11,7 +11,7 @@ public class DBConnect {
         }
 
     public void connect() {
-        url = "jdbc:sqlite:CompanyProgram.db";
+        url = "jdbc:sqlite::resource:CompanyProgram.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);

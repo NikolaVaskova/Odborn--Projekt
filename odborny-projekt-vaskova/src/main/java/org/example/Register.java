@@ -106,7 +106,7 @@ public class Register extends JFrame {
                 if (email.indexOf("@savencia.com") != -1) {
                     DBConnect dbConnect = new DBConnect();
                     //dbConnect.addUser(name, email, new String(passwordText.getPassword()));
-                    dbConnect.addUser(name, email, passwordHash(passwordText.getPassword()));
+                    dbConnect.addUser(name, email, passwordHash(passwordText.getPassword().toString()));
                     setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid email");
@@ -115,7 +115,7 @@ public class Register extends JFrame {
         });
         add(panel);
     }
-    private void passwordHash(String password) {
+    private String passwordHash(String password) {
         return password;
     }
 }

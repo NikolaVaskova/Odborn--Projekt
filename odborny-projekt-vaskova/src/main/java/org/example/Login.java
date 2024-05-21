@@ -73,9 +73,10 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 // Tady bude muset být nějaká funkce funkce
+                /*
                 dbConnect.findPasswordFromUsername(loginText.getUsername);
                 validatePassword(loginText.getPassword, dbConnect.findPasswordFromUsername(loginText.getUsername));
-
+                */
                 SelectOperation newWindow = new SelectOperation();
                 newWindow.setVisible(true);
 
