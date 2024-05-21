@@ -13,16 +13,6 @@ public class Checklist extends JFrame {
     JScrollBar scrollBar;
     JButton okeyButton, editButton;
 
-    public Checklist() {
-        setTitle("Checklist");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 500);
-        //setIconImage
-        //setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
-
     public Checklist(DBConnect dbConnect) throws HeadlessException {
         this.newChecklist = new NewChecklist();
         for (ChecklistItem item : dbConnect.getChecklistItems()) {
@@ -79,7 +69,14 @@ public class Checklist extends JFrame {
             }
         });
 
-
         add(panel);
+            setTitle("Checklist");
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setSize(500, 500);
+            //setIconImage
+            //setResizable(false);
+            setLocationRelativeTo(null);
+            setVisible(true);
+        }
     }
-}
+

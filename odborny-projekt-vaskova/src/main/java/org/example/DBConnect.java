@@ -61,4 +61,19 @@ public class DBConnect {
         }
         return items;
     }
+
+    public void addUser(String name, String email, String password) {
+        String sql = "INSERT INTO Users(name, email, password) VALUES(?, ? , ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        pstmt.setString(1, name);
+        pstmt.setString(2, email);
+        pstmt.setString(3, password);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

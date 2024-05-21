@@ -11,14 +11,6 @@ public class EditChecklist extends JFrame {
     JTextField addText, removeText;
     JButton saveButton;
     public EditChecklist() throws HeadlessException {
-        setTitle("Edit");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 200);
-        //setIconImage
-        //setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
-
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
@@ -71,7 +63,14 @@ public class EditChecklist extends JFrame {
                 setVisible(false);
             }
         });
-
         add(panel);
+
+        setTitle("Edit");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(500, 200);
+        //setIconImage
+        //setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 }

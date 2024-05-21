@@ -11,6 +11,4 @@ public class Computer {
         this.checklist = checklist;
     }
 
-
-
 }
