@@ -11,6 +11,7 @@ public class EditChecklist extends JFrame {
     JTextField addText, removeText;
     JButton saveButton;
     public EditChecklist() throws HeadlessException {
+
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
