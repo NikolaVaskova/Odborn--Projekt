@@ -1,4 +1,6 @@
 package org.example;
+import org.example.logic.ChecklistItem;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ public class DBConnect {
         }
 
     public void connect() {
-        url = "jdbc:sqlite:CompanyProgram.db";
+        url = "jdbc:sqlite::resource:CompanyProgram.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -62,18 +64,15 @@ public class DBConnect {
         return items;
     }
 
-    public void addUser(String name, String email, String password) {
-        String sql = "INSERT INTO Users(name, email, password) VALUES(?, ? , ?)";
+    public void addUser(String name, String email, String password) throws SQLException {
+        String sql = "INSERT INTO Users(name, email, password) VALUES(?,?,?)";
 
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+       Connection conn = DriverManager.getConnection(url);
+         PreparedStatement pstmt = conn.prepareStatement(sql);
+        System.out.println(name);
         pstmt.setString(1, name);
         pstmt.setString(2, email);
         pstmt.setString(3, password);
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        pstmt.execute();
     }
 }
