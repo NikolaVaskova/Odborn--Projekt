@@ -1,7 +1,7 @@
 package org.example.graphic;
 
 import org.example.logic.ChecklistItem;
-import org.example.DBConnect;
+
 import org.example.logic.NewChecklist;
 
 import javax.swing.*;
@@ -10,19 +10,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Checklist extends JFrame {
-    private NewChecklist newChecklist;
+    private org.example.logic.NewChecklist newChecklist;
     JPanel panel;
     JLabel label;
     JCheckBox checkBox;
     JScrollBar scrollBar;
     JButton okeyButton, editButton;
 
-    public Checklist(DBConnect dbConnect) throws HeadlessException {
+    public Checklist(java.util.List<ChecklistItem> items) throws HeadlessException {
         this.newChecklist = new NewChecklist();
-        for (ChecklistItem item : dbConnect.getChecklistItems()) {
+        for (ChecklistItem item : items) {
             this.newChecklist.addItem(item);
-        }
-
+            }
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
@@ -83,4 +82,3 @@ public class Checklist extends JFrame {
             setVisible(true);
         }
     }
-

@@ -1,13 +1,20 @@
 package org.example.graphic;
 
 import org.example.DBConnect;
+import org.example.DeviceOperations;
+import org.example.Names;
+import org.example.UsersOperations;
+import org.example.logic.ChecklistItem;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class SelectOperation extends JFrame {
+    private static String lastUsedTable;
     JPanel panel;
     JLabel operationLabel, nameLabel;
     JTextField nameText;
@@ -60,8 +67,26 @@ public class SelectOperation extends JFrame {
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
         panel.add(nameComboBox, g);
-        nameComboBox.addItem("User");
-        nameComboBox.addItem("Device");
+        for (Names name : Names.values()) {
+            nameComboBox.addItem(name.toString());
+        }
+        nameComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    operationComboBox.removeAllItems();
+                    if (nameComboBox.getSelectedItem().equals(Names.USER.toString())) {
+                        for (UsersOperations operation : UsersOperations.values()) {
+                            operationComboBox.addItem(operation.toString());
+                        }
+                    } else if (nameComboBox.getSelectedItem().equals(Names.DEVICE.toString())) {
+                        for (DeviceOperations operation : DeviceOperations.values()) {
+                            operationComboBox.addItem(operation.toString());
+                        }
+                    }
+                }
+            }
+        });
 
 
         operationComboBox = new JComboBox();
@@ -71,10 +96,6 @@ public class SelectOperation extends JFrame {
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
         panel.add(operationComboBox, g);
-        operationComboBox.addItem("PC installation");
-        operationComboBox.addItem("PC reinstallation");
-        operationComboBox.addItem("PC for sale");
-        operationComboBox.addItem("User");
 
 
         nextButton = new JButton("Next");
@@ -88,13 +109,17 @@ public class SelectOperation extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                DBConnect dbConnect = null;
-                Checklist newWindow = new Checklist(dbConnect);
-                newWindow.setVisible(true);
+                String selectedOperation = operationComboBox.getSelectedItem().toString();
+                lastUsedTable = selectedOperation;
+                DBConnect dbConnect = new DBConnect();
+                java.util.List<ChecklistItem> items = dbConnect.getItemsFromTable(selectedOperation);
+                Checklist checklist = new Checklist(items);
             }
         });
 
         add(panel);
     }
+    public static String getLastUsedTable() {
+        return lastUsedTable;
+    }
 }
-

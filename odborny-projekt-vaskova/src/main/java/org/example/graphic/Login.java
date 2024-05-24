@@ -121,6 +121,7 @@ public class Login extends JFrame {
             }
         });
 
+
         add(panel);
 
         setTitle("Login");
@@ -132,8 +133,3 @@ public class Login extends JFrame {
         setVisible(true);
     }
 }
-
-
-
-
-

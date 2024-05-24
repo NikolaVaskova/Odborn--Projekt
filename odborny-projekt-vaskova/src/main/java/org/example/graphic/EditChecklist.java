@@ -1,9 +1,12 @@
 package org.example.graphic;
 
+import org.example.DBConnect;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class EditChecklist extends JFrame {
     JPanel panel;
@@ -52,24 +55,45 @@ public class EditChecklist extends JFrame {
             panel.add(removeText, g);
 
         saveButton = new JButton("Save");
-            g.gridx = 0;
-            g.gridy = 2;
-            g.gridwidth = 1;
-            g.gridheight = 1;
-            panel.add(saveButton, g);
+        g.gridx = 0;
+        g.gridy = 2;
+        g.gridwidth = 1;
+        g.gridheight = 1;
+        panel.add(saveButton, g);
+
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                DBConnect dbConnect = new DBConnect();
+                String itemToAdd = addText.getText();
+                String itemToRemove = removeText.getText();
+
+                if (!itemToAdd.isEmpty()) {
+                    String lastUsedTable = SelectOperation.getLastUsedTable();
+                    dbConnect.addItemInTable(lastUsedTable, itemToAdd);
+                }
+
+                if (!itemToRemove.isEmpty()) {
+                    try {
+                        int idToRemove = Integer.parseInt(itemToRemove);
+                        String lastUsedTable = SelectOperation.getLastUsedTable();
+                        dbConnect.removeItemById(lastUsedTable, idToRemove);
+                    } catch (NumberFormatException ex) {
+                        System.out.println("Invalid ID format: " + itemToRemove);
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
                 setVisible(false);
             }
         });
+
         add(panel);
 
         setTitle("Edit");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 200);
-        //setIconImage
-        //setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
     }

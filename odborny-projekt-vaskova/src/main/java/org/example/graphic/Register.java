@@ -109,7 +109,9 @@ public class Register extends JFrame {
                 if (email.indexOf("@savencia.com") != -1) {
                     DBConnect dbConnect = new DBConnect();
                     try {
-                        dbConnect.addUser(name, email, passwordHash(passwordText.getPassword().toString()));
+                        char[] passwordCharArray = passwordText.getPassword();
+                        String password = new String(passwordCharArray);
+                        dbConnect.addUser(name, email, passwordHash(password));
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
