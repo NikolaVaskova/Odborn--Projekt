@@ -13,18 +13,9 @@ public class Register extends JFrame {
     JLabel nameLabel, emailLabel, passwordLabel;
     JTextField nameText, emailText;
     JPasswordField passwordText;
-    JButton registerButton;
+    JButton registerButton, cancelButton, showPasswordButton;
 
     public Register() throws HeadlessException {
-        setTitle("Register");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 350);
-        //setIconImage
-        //setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
-
-
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
@@ -60,9 +51,8 @@ public class Register extends JFrame {
             g.gridwidth = 2;
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
-            nameText.setColumns(20);
-            // ZMNĚNIT barvu pozadi na firemni barvy
-            nameText.setBackground(Color.getHSBColor(192,237,251));
+        nameText.setColumns(20);
+        nameText.setBackground(Color.getHSBColor(192,237,251));
         panel.add(nameText, g);
 
 
@@ -72,9 +62,8 @@ public class Register extends JFrame {
             g.gridwidth = 2;
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
-            emailText.setColumns(20);
-            // ZMNĚNIT barvu pozadi na firemni barvy
-            emailText.setBackground(Color.getHSBColor(192,237,251));
+        emailText.setColumns(20);
+        emailText.setBackground(Color.getHSBColor(192,237,251));
         panel.add(emailText, g);
 
 
@@ -83,21 +72,18 @@ public class Register extends JFrame {
             g.gridy = 2;
             g.gridwidth = 2;
             g.gridheight = 1;
-            passwordText.setColumns(20);
             g.fill = GridBagConstraints.HORIZONTAL;
-            // ZMNĚNIT barvu pozadi na firemni barvy
-            passwordText.setBackground(Color.getHSBColor(192,237,251));
+        passwordText.setColumns(20);
+        passwordText.setBackground(Color.getHSBColor(192,237,251));
         panel.add(passwordText, g);
 
 
-        registerButton = new JButton();
-            registerButton.setText("Register");
+        registerButton = new JButton("Register");
             g.gridx = 1;
             g.gridy = 3;
-            g.gridwidth = 2;
+            g.gridwidth = 1;
             g.gridheight = 1;
-            // ZMNĚNIT barvu pozadi na firemni barvy
-            registerButton.setBackground(Color.getHSBColor(192,237,251));
+        registerButton.setBackground(Color.getHSBColor(192,237,251));
         panel.add(registerButton, g);
 
         registerButton.addActionListener(new ActionListener() {
@@ -121,11 +107,55 @@ public class Register extends JFrame {
                 }
             }
         });
+
+
+        cancelButton = new JButton("Cancel");
+            g.gridx = 2;
+            g.gridy = 3;
+            g.gridwidth = 1;
+            g.gridheight = 1;
+        cancelButton.setBackground(Color.getHSBColor(192,237,251));
+        panel.add(cancelButton, g);
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
+
+        showPasswordButton = new JButton("Show");
+            g.gridx = 4;
+            g.gridy = 2;
+            g.gridwidth = 1;
+            g.gridheight = 1;
+        showPasswordButton.setBackground(Color.getHSBColor(192,237,251));
+        panel.add(showPasswordButton, g);
+
+        showPasswordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (passwordText.getEchoChar() == (char)0) {
+                    //pokud je heslo viditelne, skryje se
+                    passwordText.setEchoChar('*');
+                } else {
+                    //pokud je heslo skryte, zviditelni se
+                    passwordText.setEchoChar((char)0);
+                }
+            }
+        });
+
+
         add(panel);
+
+        setTitle("Register");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(500, 350);
+        setIconImage(new ImageIcon("savencia-icon.png").getImage());
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
     private String passwordHash(String password) {
         return password;
     }
 }
-
-

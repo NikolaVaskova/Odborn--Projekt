@@ -41,9 +41,8 @@ public class Login extends JFrame {
             g.gridwidth = 2;
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
-            nameText.setColumns(20);
-            // ZMNĚNIT barvu pozadi na firemni barvy
-            nameText.setBackground(Color.getHSBColor(192,237,251));
+        nameText.setColumns(20);
+        nameText.setBackground(Color.getHSBColor(192,237,251));
         panel.add(nameText, g);
 
 
@@ -52,10 +51,9 @@ public class Login extends JFrame {
             g.gridy = 1;
             g.gridwidth = 2;
             g.gridheight = 1;
-            nameText.setColumns(20);
             g.fill = GridBagConstraints.HORIZONTAL;
-            // ZMNĚNIT barvu pozadi na firemni barvy
-            passwordText.setBackground(Color.getHSBColor(192,237,251));
+        nameText.setColumns(20);
+        passwordText.setBackground(Color.getHSBColor(192,237,251));
         panel.add(passwordText, g);
 
 
@@ -64,8 +62,7 @@ public class Login extends JFrame {
             g.gridy = 2;
             g.gridwidth = 2;
             g.gridheight = 1;
-            // ZMNĚNIT barvu pozadi na firemni barvy
-            loginButton.setBackground(Color.getHSBColor(192,237,251));
+        loginButton.setBackground(Color.getHSBColor(192,237,251));
         panel.add(loginButton, g);
 
         loginButton.addActionListener(new ActionListener() {
@@ -87,7 +84,6 @@ public class Login extends JFrame {
             g.gridy = 1;
             g.gridwidth = 1;
             g.gridheight = 1;
-        // ZMNĚNIT barvu pozadi na firemni barvy
         showPasswordButton.setBackground(Color.getHSBColor(192,237,251));
         panel.add(showPasswordButton, g);
 
@@ -127,8 +123,7 @@ public class Login extends JFrame {
         setTitle("Login");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 350);
-        //setIconImage
-        //setResizable(false);
+        setIconImage(new ImageIcon("savencia-icon.png").getImage());
         setLocationRelativeTo(null);
         setVisible(true);
     }

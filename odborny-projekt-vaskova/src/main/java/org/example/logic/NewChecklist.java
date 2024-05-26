@@ -1,15 +1,10 @@
 package org.example.logic;
 
-import org.example.logic.ChecklistItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NewChecklist {
-    //private HashMap<ChecklistItem, Boolean> checklistItems;
-    /*public NewChecklist() {
-        checklistItems = new HashMap<>();
-    }*/
 
     private List<ChecklistItem> items;
 

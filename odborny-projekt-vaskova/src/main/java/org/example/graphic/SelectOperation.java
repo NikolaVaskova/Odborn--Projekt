@@ -22,12 +22,6 @@ public class SelectOperation extends JFrame {
     JButton nextButton;
 
     public SelectOperation() throws HeadlessException {
-        setTitle("Select Operation");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 350);
-        setLocationRelativeTo(null);
-        setVisible(true);
-
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
@@ -56,7 +50,7 @@ public class SelectOperation extends JFrame {
             g.gridwidth = 2;
             g.gridheight = 1;
             g.fill = GridBagConstraints.HORIZONTAL;
-            nameText.setColumns(10);
+        nameText.setColumns(10);
         panel.add(nameText, g);
 
 
@@ -108,7 +102,6 @@ public class SelectOperation extends JFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
                 String selectedOperation = operationComboBox.getSelectedItem().toString();
                 lastUsedTable = selectedOperation;
                 DBConnect dbConnect = new DBConnect();
@@ -117,7 +110,16 @@ public class SelectOperation extends JFrame {
             }
         });
 
+
         add(panel);
+
+        setTitle("Select Operation");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(500, 350);
+        setIconImage(new ImageIcon("savencia-icon.png").getImage());
+        setLocationRelativeTo(null);
+        setVisible(true);
+
     }
     public static String getLastUsedTable() {
         return lastUsedTable;

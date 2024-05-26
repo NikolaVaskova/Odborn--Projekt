@@ -11,7 +11,6 @@ public class DBConnect {
 
     public DBConnect() {
         connection = connect();
-
     }
 
     public Connection connect() {
@@ -37,11 +36,6 @@ public class DBConnect {
             System.out.println(e.getMessage());
         }
     }
-
-    /*public void insertCustomer(String nameCustomer) {
-        String sql = "INSERT INTO Customer(name) VALUES('" + nameCustomer + "')" ;
-        executeSQL(sql);
-    }*/
 
     public List<ChecklistItem> getChecklistItems() {
         String sql = "SELECT id, label FROM ChecklistItems";

@@ -1,11 +1,5 @@
 package org.example.logic;
 
-import org.sqlite.core.DB;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 public class User {
     private int id;
     private String Name;

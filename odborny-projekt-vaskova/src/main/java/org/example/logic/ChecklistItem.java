@@ -11,4 +11,8 @@ public class ChecklistItem {
     public String getLabel() {
         return label;
     }
+
+    public Integer getId() {
+        return id;
+    }
 }

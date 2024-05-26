@@ -12,10 +12,8 @@ import java.awt.event.ActionListener;
 public class Checklist extends JFrame {
     private org.example.logic.NewChecklist newChecklist;
     JPanel panel;
-    JLabel label;
     JCheckBox checkBox;
-    JScrollBar scrollBar;
-    JButton okeyButton, editButton;
+    JButton sendButton, exportButton, editButton, cancelButton;
 
     public Checklist(java.util.List<ChecklistItem> items) throws HeadlessException {
         this.newChecklist = new NewChecklist();
@@ -33,36 +31,38 @@ public class Checklist extends JFrame {
             g.gridy = GridBagConstraints.RELATIVE;
             g.gridwidth = 1;
             g.gridheight = 1;
+            g.anchor = GridBagConstraints.WEST;
         panel.add(checkBox, g);
         }
 
 
-        scrollBar = new JScrollBar();
-            g.gridx = 0;
-            g.gridy = GridBagConstraints.RELATIVE;
-            g.gridwidth = 1;
-            g.gridheight = 1;
-        scrollBar.setOrientation(JScrollBar.VERTICAL);
-        scrollBar.setMinimum(0);
-        scrollBar.setMaximum(100);
-        scrollBar.setValue(1);
-        panel.add(scrollBar, g);
+        JPanel buttonPanel = new JPanel(new FlowLayout()); // vytvori specialni panel pro buttony
+
+        sendButton = new JButton("Send");
+        sendButton.setBackground(Color.getHSBColor(192,237,251));
+        buttonPanel.add(sendButton);
 
 
-        okeyButton = new JButton("Okey");
-            g.gridx = 0;
-            g.gridy = GridBagConstraints.RELATIVE;
-            g.gridwidth = 1;
-            g.gridheight = 1;
-        panel.add(okeyButton, g);
+        exportButton = new JButton("Export");
+        exportButton.setBackground(Color.getHSBColor(192,237,251));
+        buttonPanel.add(exportButton);
+
+        exportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    java.io.File selectedFile = fileChooser.getSelectedFile();
+                    System.out.println(selectedFile.getName());
+                }
+            }
+        });
 
 
         editButton = new JButton("Edit");
-            g.gridx = 0;
-            g.gridy = GridBagConstraints.RELATIVE;
-            g.gridwidth = 1;
-            g.gridheight = 1;
-        panel.add(editButton, g);
+        editButton.setBackground(Color.getHSBColor(192,237,251));
+        buttonPanel.add(editButton);
 
         editButton.addActionListener(new ActionListener() {
             @Override
@@ -72,13 +72,31 @@ public class Checklist extends JFrame {
             }
         });
 
-        add(panel);
-            setTitle("Checklist");
-            setDefaultCloseOperation(EXIT_ON_CLOSE);
-            setSize(500, 500);
-            //setIconImage
-            //setResizable(false);
-            setLocationRelativeTo(null);
-            setVisible(true);
-        }
+
+        cancelButton = new JButton("Cancel");
+        cancelButton.setBackground(Color.getHSBColor(192,237,251));
+        buttonPanel.add(cancelButton);
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
+
+
+        JScrollPane scrollPane = new JScrollPane(panel);
+
+        setLayout(new BorderLayout()); // nastaví layout na BorderLayout
+        add(scrollPane, BorderLayout.CENTER); // prida scroll panel na stred
+        add(buttonPanel, BorderLayout.SOUTH); // Prida button panel dolu
+
+        setTitle("Checklist");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(700,400);
+        setIconImage(new ImageIcon("savencia-icon.png").getImage());
+        setLocationRelativeTo(null);
+        setVisible(true);
+
     }
+}
