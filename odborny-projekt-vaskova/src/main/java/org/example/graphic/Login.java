@@ -1,9 +1,14 @@
 package org.example.graphic;
 
+import org.example.DBConnect;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
+
+import static org.example.logic.Password.verifyPassword;
 
 public class Login extends JFrame {
     JPanel panel;
@@ -77,6 +82,29 @@ public class Login extends JFrame {
                 newWindow.setVisible(true);
                 }
             });
+
+       /* loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = nameText.getText();
+                String enteredPassword = new String(passwordText.getPassword());
+
+                DBConnect dbConnect = new DBConnect();
+                String storedPassword = dbConnect.findPasswordFromUsername(name);
+
+                try {
+                    if (verifyPassword(enteredPassword, storedPassword)) {
+                        setVisible(false);
+                        SelectOperation newWindow = new SelectOperation();
+                        newWindow.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Invalid username or password");
+                    }
+                } catch (NoSuchAlgorithmException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });*/
 
 
         showPasswordButton = new JButton("Show");

@@ -1,9 +1,13 @@
 package org.example;
 import org.example.logic.ChecklistItem;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 public class DBConnect {
     private static String url;
@@ -98,9 +102,10 @@ public class DBConnect {
     }
 
     public void addItemInTable(String lastUsedTable, String itemToAdd) {
-        String sql = "INSERT INTO " + lastUsedTable + "(Item) VALUES('" + itemToAdd + "')" ;
+        String sql = "INSERT INTO " + lastUsedTable + "(Item) VALUES('" + itemToAdd + "')";
         executeSQL(sql);
     }
+
     public void removeItemById(String lastUsedTable, int id) throws SQLException {
         String sql = "DELETE FROM " + lastUsedTable + " WHERE id = ?";
 
@@ -109,4 +114,27 @@ public class DBConnect {
             pstmt.executeUpdate();
         }
     }
+
+    public String findPasswordFromUsername(String name) {
+        return name;
+    }
+
+    /*public void addUser(String name, String email, String password) {
+        String sql = "INSERT INTO Users(name, email, password) VALUES(?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
+            String encodedPassword = Base64.getEncoder().encodeToString(hashedPassword);
+
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            pstmt.setString(3, encodedPassword);
+            pstmt.executeUpdate();
+        } catch (SQLException | NoSuchAlgorithmException e) {
+            System.out.println(e.getMessage());
+        }
+    }*/
 }
